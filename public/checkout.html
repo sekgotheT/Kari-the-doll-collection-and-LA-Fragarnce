@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KARI THE DOLL COLLECTION AND LA`FRAGANCE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Checkout</h1>
+        <nav>
+            <a href="../index.html">Home</a> |
+            <a href="shop.html">Shop</a> |
+            <a href="cart.html">Cart</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="about-us.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="product.html">my product</a>
+            <a href="admin.html">dashboard</a>
+             <input type="text" placeholder="Search products..." class="search-bar">
+        </nav>
+    </header>
+    <section class="checkout">
+        <h2>Shipping Details</h2>
+        <form>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+            <label for="postal-code">Postal Code:</label>
+            <input type="text" id="postal-code" name="postal-code" required>
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required>
+        </form>
+        <h2>Payment Options</h2>
+        <form>
+            <input type="radio" id="paypal" name="payment" value="PayPal">
+            <label for="paypal">PayPal</label><br>
+            <input type="radio" id="credit-card" name="payment" value="Credit Card">
+            <label for="credit-card">Credit Card</label><br>
+            <input type="radio" id="bank-transfer" name="payment" value="Bank Transfer">
+            <label for="bank-transfer">Bank Transfer</label><br>
+        </form>
+        <button>Confirm and Pay</button>
+    </section>
+    <footer>
+        <p>&copy; 2024 Your Brand. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+     <!-- Modal Structure -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Product Image">
+        </div>
+    </div>
+<script src="../js/main.js"></script>
+<script src="../js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to KARI THE DOLL COLLECTION AND LA`FRAGANCE</title>
+    <link rel="stylesheet" href="public/styles.css">
+</head>
+<body>
+    <header>
+        <h1>KARI THE DOLL COLLECTION AND LA`FRAGANCE</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="public/about-us.html">About Us</a> |
+            <a href="public/shop.html">Shop</a> |
+            <a href="public/product.html">My Products</a> |
+            <a href="public/checkout.html">Checkout</a>
+            <a href="public/cart.html">Cart</a> |
+            <a href="public/admin.html">dashboard</a>
+            <a href="public/contact.html">Contact Us</a>
+            <input type="text" placeholder="Search products..." class="search-bar">
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Your One-Stop Shop for Quality Products</h2>
+        <p>We provide the best quality items to suit your lifestyle.</p>
+        <a href="public/shop.html" class="btn">Shop Now</a>
+    </section>
+
+    <section class="featured-products">
+        <h2>our collection</h2>
+        <div class="product-card">
+            <img src="public/images/st4.jpg" alt="Product 1">
+            <h3>Product Name 1</h3>
+            <p>$25.00</p>
+            <a href="public/shop.html" class="btn">Buy Now</a>
+        </div>
+         <div class="product-card">
+            <img src="public/images/st8.jpg" alt="Product 2">
+            <h3>Product Name 2</h3>
+            <p>$18.00</p>
+            <a href="public/shop.html" class="btn">Buy Now</a>
+        </div>
+         <div class="product-card">
+            <img src="public/images/st6.jpg" alt="Product 2">
+            <h3>Product Name 2</h3>
+            <p>$18.00</p>
+            <a href="public/shop.html" class="btn">Buy Now</a>
+        </div>
+         <div class="product-card">
+            <img src="public/images/st10.jpg" alt="Product 2">
+            <h3>Product Name 2</h3>
+            <p>$18.00</p>
+            <a href="public/shop.html" class="btn">Buy Now</a>
+        </div>
+         <div class="product-card">
+            <img src="public/images/st9.jpg" alt="Product 2">
+            <h3>Product Name 2</h3>
+            <p>$18.00</p>
+            <a href="public/shop.html" class="btn">Buy Now</a>
+        </div>
+        <div class="product-card">
+            <img src="public/images/st5.jpg" alt="Product 2">
+            <h3>Product Name 2</h3>
+            <p>$18.00</p>
+            <a href="public/shop.html" class="btn">Buy Now</a>
+        </div>
+    </section>
+
+    <section class="promo-banner">
+        <h2>Special Sale - Up to 50% Off!</h2>
+        <p>Grab the best deals on our exclusive collections.</p>
+        <a href="public/shop.html" class="btn">Shop Deals</a>
+    </section>
+
+    <section class="customer-reviews">
+        <h2>what they say</h2>
+        <div class="review">
+            <p>"The best quality products and service! Highly recommended."</p>
+            <h4>- .</h4>
+        </div>
+        <div class="review">
+            <p>"A seamless shopping experience and quick delivery."</p>
+            <h4>- Mark T.</h4>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Stay Updated!</h2>
+        <p>Subscribe to our newsletter for the latest updates.</p>
+        <form action="subscribe.html" method="post">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit" class="btn">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Brand. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+     <!-- Modal Structure -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Product Image">
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

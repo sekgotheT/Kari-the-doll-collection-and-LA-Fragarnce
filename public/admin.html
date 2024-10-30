@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KARI THE DOLL COLLECTION AND LA`FRAGANCE-Admin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="admin.html">Dashboard</a>
+            <a href="shop.html">Shop</a> |
+            <a href="cart.html">Cart</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="product.html">My Product</a> 
+             <input type="text" placeholder="Search products..." class="search-bar">
+        </nav>
+    </header>
+
+    <section class="admin-dashboard">
+        <h2>Upload New Product</h2>
+        <form id="upload-product-form" action="/upload-product" method="POST" enctype="multipart/form-data">
+            <label for="product-name">Product Name:</label>
+            <input type="text" id="product-name" name="product-name" required>
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" required>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+            <label for="image">Product Image:</label>
+            <input type="file" id="image" name="image" required>
+            <button type="submit">Upload Product</button>
+        </form>
+
+        <h2>Existing Products</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sample Product 1</td>
+                    <td>$XX.XX</td>
+                    <td>A brief description of the product.</td>
+                    <td>
+                        <button onclick="editProduct('1')">Edit</button>
+                        <button onclick="deleteProduct('1')">Delete</button>
+                    </td>
+                </tr>
+                <!-- More products can be dynamically loaded here -->
+            </tbody>
+        </table>
+
+        <h2>Sales Analytics</h2>
+        <div class="analytics">
+            <p>Total Sales This Month: $XXX.XX</p>
+            <p>Total Orders This Month: XX</p>
+            <p>Most Popular Product: <span id="popular-product">Product Name</span></p>
+            <!-- You can integrate a chart here using a library like Chart.js -->
+        </div>
+
+        <h2>User Management</h2>
+        <div class="user-management">
+            <button onclick="addUser()">Add New User</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sample User</td>
+                        <td>user@example.com</td>
+                        <td>
+                            <button onclick="editUser('userId')">Edit</button>
+                            <button onclick="deleteUser('userId')">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- More users can be dynamically loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Order Management</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Status</th>
+                    <th>Total Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#001</td>
+                    <td>John Doe</td>
+                    <td>Shipped</td>
+                    <td>$XX.XX</td>
+                    <td>
+                        <button onclick="viewOrderDetails('001')">View</button>
+                    </td>
+                </tr>
+                <!-- More orders can be dynamically loaded here -->
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Brand. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+     <!-- Modal Structure -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Product Image">
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script>
+        function editProduct(id) {
+            // Logic to edit product
+            alert(`Edit product with ID: ${id}`);
+        }
+
+        function deleteProduct(id) {
+            // Logic to delete product
+            alert(`Delete product with ID: ${id}`);
+        }
+
+        function addUser() {
+            // Logic to add a new user
+            alert('Add new user functionality goes here.');
+        }
+
+        function editUser(userId) {
+            // Logic to edit user
+            alert(`Edit user with ID: ${userId}`);
+        }
+
+        function deleteUser(userId) {
+            // Logic to delete user
+            alert(`Delete user with ID: ${userId}`);
+        }
+
+        function viewOrderDetails(orderId) {
+            // Logic to view order details
+            alert(`View details for order ID: ${orderId}`);
+        }
+    </script>
+</body>
+</html>

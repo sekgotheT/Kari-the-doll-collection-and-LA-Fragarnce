@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KARI THE DOLL COLLECTION AND LA`FRAGANCE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1> Cart</h1>
+        <nav>
+            <a href="../index.html">Home</a> |
+            <a href="shop.html">Shop</a> |
+            <a href="cart.html">Cart</a> |
+            <a href="checkout.html">Checkout</a> |
+            <a href="about.html">About Us</a> |
+            <a href="contact.html">Contact Us</a> |
+            <a href="product.html">My Product</a> |  
+            <a href="admin.html">Dashboard</a> 
+        </nav>
+    </header>
+
+    <section class="cart">
+        <h2>Items in Your Cart</h2>
+        <div id="cart-items">
+            <!-- JavaScript will dynamically load cart items here -->
+            <div class="cart-item">
+                <img src="images/sample-product.jpg" alt="Sample Product">
+                <div class="item-details">
+                    <h3>Product Name</h3>
+                    <p>Price: $XX.XX</p>
+                    <p>Quantity: 
+                        <input type="number" value="1" min="1" onchange="updateCartTotal()">
+                    </p>
+                    <button class="remove-btn" onclick="removeItem(this)">Remove</button>
+                </div>
+            </div>
+            <!-- More cart items will be added here dynamically -->
+        </div>
+        <div class="cart-summary">
+            <h3>Cart Summary</h3>
+            <p>Total Price: <span id="total-price">$0.00</span></p>
+            <div class="discount-code">
+                <label for="discount-code">Discount Code:</label>
+                <input type="text" id="discount-code">
+                <button onclick="applyDiscount()">Apply</button>
+            </div>
+        </div>
+        <button onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+    </section>
+
+    <section class="suggested-products">
+        <h2>You Might Also Like</h2>
+        <div class="product-list">
+            <!-- Suggested products can be dynamically loaded here -->
+            <div class="product">
+                <img src="images/st3.jpg" alt="Suggested Product 1">
+                <h3>Suggested Product 1</h3>
+                <p>Price: $XX.XX</p>
+                <button onclick="addToCart('Suggested Product 1', XX.XX)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="images/st4.jpg" alt="Suggested Product 2">
+                <h3>Suggested Product 2</h3>
+                <p>Price: $XX.XX</p>
+                <button onclick="addToCart('Suggested Product 2', XX.XX)">Add to Cart</button>
+            </div>
+            <!-- More suggested products can be added -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Brand. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+     <!-- Modal Structure -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Product Image">
+        </div>
+    </div>
+
+    <script src="../js/cart.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        function updateCartTotal() {
+            // Logic to update the total price based on quantities and prices
+        }
+
+        function removeItem(button) {
+            // Logic to remove the item from the cart
+            const cartItem = button.parentElement.parentElement;
+            cartItem.remove();
+            updateCartTotal(); // Update the total after removal
+        }
+
+        function applyDiscount() {
+            const discountCode = document.getElementById('discount-code').value;
+            // Logic to apply the discount code
+            alert(`Discount code "${discountCode}" applied!`);
+            // You can implement the actual discount logic here
+        }
+
+        function addToCart(productName, productPrice) {
+            // Logic to add suggested product to the cart
+            alert(`${productName} added to your cart for $${productPrice}!`);
+        }
+    </script>
+</body>
+</html>

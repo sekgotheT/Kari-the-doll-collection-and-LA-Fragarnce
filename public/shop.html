@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KARI THE DOLL COLLECTION AND LA`FRAGANCE-Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Our Shop</h1>
+        <nav>
+            <a href="../index.html">Home</a> |
+            <a href="about-US.html">About Us</a> |
+            <a href="product.html">My Product</a> |
+            <a href="shop.html">Shop</a> |
+            <a href="contact.html">Contact Us</a> |
+            <a href="cart.html">Cart</a> |
+            <a href="checkout.html">Checkout</a> |
+            <a href="admin.html">Dashboard</a>
+             <input type="text" placeholder="Search products..." class="search-bar">
+        </nav>
+    </header>
+
+    <section class="product-list">
+        <h2>Explore Our Products</h2>
+        <div id="product-container" class="product-grid">
+            <!-- JavaScript will dynamically load product cards here -->
+        </div>
+    </section>
+
+    <section class="admin-upload">
+        <h2>Upload Your Products</h2>
+        <form id="uploadForm" action="uploadProduct.html" method="post" enctype="multipart/form-data">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="productDescription">Description:</label>
+            <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
+
+            <label for="productPrice">Price ($):</label>
+            <input type="number" id="productPrice" name="productPrice" required>
+
+            <label for="productImage">Upload Image:</label>
+            <input type="file" id="productImage" name="productImage" accept="image/*" required>
+
+            <button type="submit" class="btn">Upload Product</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Brand. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+      <!-- Modal Structure -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Product Image">
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script>
+        // Example dynamic product loading with JavaScript
+        const productContainer = document.getElementById('product-container');
+        
+        // Sample product data (can be fetched from server/API in production)
+        const products = [
+            { name: 'kitchen set', price: '$15', description: 'kitchen set for kitchen chores.', image: 'images/st8.jpg' },
+            { name: 'hat', price: '$20', description: 'Comfortable hat for everyday wear on sunny days.', image: 'images/st11.jpg' },
+            { name: 'car seats', price: '$12', description: 'smooth comfortable car seat w.', image: 'images/st12.jpg' }
+        ];
+
+        // Load products dynamically
+        products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('product-card');
+            productCard.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <p class="price">${product.price}</p>
+                <a href="product.html" class="btn">View Product</a>
+            `;
+            productContainer.appendChild(productCard);
+        });
+    </script>
+
+</body>
+</html>
