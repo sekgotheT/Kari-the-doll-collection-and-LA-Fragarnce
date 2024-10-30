@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Payment | KARI THE DOLL COLLECTION AND LA`FRAGANCE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Secure Payment</h1>
+        <nav>
+            <a href="../index.html">Home</a> |
+            <a href="shop.html">Shop</a> |
+            <a href="cart.html">Cart</a> |
+            <a href="checkout.html">Checkout</a> |
+            <a href="about-us.html">About Us</a> |
+            <a href="product.html">My Product</a> | 
+            <a href="contact.html">Contact Us</a> |
+            <a href="admin.html">Admin</a>
+        </nav>
+    </header>
+
+    <section class="payment-section">
+        <h2>Complete Your Payment</h2>
+        <form id="payment-form" action="/process-payment" method="POST">
+            <label for="cardholder-name">Cardholder Name:</label>
+            <input type="text" id="cardholder-name" name="cardholder-name" required>
+
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" pattern="\d{16}" placeholder="1234 5678 9012 3456" required>
+
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="password" id="cvv" name="cvv" pattern="\d{3,4}" placeholder="123" required>
+
+            <label for="billing-address">Billing Address:</label>
+            <input type="text" id="billing-address" name="billing-address" placeholder="123 Street Name, City, Country" required>
+
+            <label for="zip-code">ZIP Code:</label>
+            <input type="text" id="zip-code" name="zip-code" placeholder="ZIP Code" required>
+
+            <button type="submit" class="submit-payment">Pay Now</button>
+        </form>
+
+        <div class="payment-icons">
+            <img src="images/visa.png" alt="Visa">
+            <img src="images/mastercard.png" alt="MasterCard">
+            <img src="images/amex.png" alt="American Express">
+            <img src="images/paypal.png" alt="PayPal">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Brand. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="social-media">
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+    <script src="../main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../admin.js"></script>
+</body>
+</html>
