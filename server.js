@@ -94,6 +94,30 @@ app.post('/uploadProduct', upload.single('image'), (req, res) => {
     res.send('Product uploaded successfully');
 });
 
+/ Payment Handling with Stripe (for example)
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Set up with your Stripe secret key
+
+// Route to handle payment intent creation
+app.post('/create-payment-intent', async (req, res) => {
+    try {
+        const { amount, currency } = req.body;
+
+        // Create a payment intent with the specified amount and currency
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount, // amount in the smallest currency unit, e.g., cents for USD
+            currency,
+        });
+
+        res.send({
+            clientSecret: paymentIntent.client_secret,
+        });
+    } catch (error) {
+        console.error('Payment error:', error);
+        res.status(500).send({ error: 'Payment creation failed' });
+    }
+});
+
+
 // Root Route for health check or basic response
 app.get('/', (req, res) => {
   res.send('API is running...');
