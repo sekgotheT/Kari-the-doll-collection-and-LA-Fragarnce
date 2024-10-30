@@ -23,6 +23,9 @@
     <section class="payment-section">
         <h2>Complete Your Payment</h2>
         <form id="payment-form" action="/process-payment" method="POST">
+            <label for="description">product your paying for!.:</label>
+            <textarea id="description" name="description" required></textarea>
+            
             <label for="cardholder-name">Cardholder Name:</label>
             <input type="text" id="cardholder-name" name="cardholder-name" required>
 
