@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login - KARI THE DOLL COLLECTION AND LA`FRAGANCE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="login-section">
+        <h2>Admin Login</h2>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            
+            <button type="button" onclick="login()">Login</button>
+            <p id="error-message" style="color: red; display: none;">Invalid credentials. Please try again.</p>
+        </form>
+    </section>
+
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Replace with actual validation if using a database
+            const adminUsername = "Karabomathe@gmail.com"; // set your admin username
+            const adminPassword = "@karabo32"; // set your admin password
+
+            if (username === adminUsername && password === adminPassword) {
+                // Store login status
+                localStorage.setItem("isAdminLoggedIn", true);
+                window.location.href = "admin.html"; // Redirect to admin page
+            } else {
+                // Show error message
+                document.getElementById("error-message").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
