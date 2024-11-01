@@ -16,13 +16,22 @@
             <a href="about-us.html">About Us</a> |
             <a href="product.html">My Product</a> | 
             <a href="contact.html">Contact Us</a> |
-            <a href="admin.html">Admin</a>
+            <a href="login.html">Admin</a>
         </nav>
     </header>
 
     <section class="payment-section">
         <h2>Complete Your Payment</h2>
         <form id="payment-form" action="/process-payment" method="POST">
+             <label for="name">Name:</label>
+             <input type="text" id="name" name="name" required>
+             
+             <label for="email">Email:</label>
+             <input type="email" id="email" name="email" required>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
             <label for="description">product your paying for!.:</label>
             <textarea id="description" name="description" required></textarea>
             
@@ -47,12 +56,6 @@
             <button type="submit" class="submit-payment">Pay Now</button>
         </form>
 
-        <div class="payment-icons">
-            <img src="images/visa.png" alt="Visa">
-            <img src="images/mastercard.png" alt="MasterCard">
-            <img src="images/amex.png" alt="American Express">
-            <img src="images/paypal.png" alt="PayPal">
-        </div>
     </section>
 
     <footer>
@@ -70,6 +73,7 @@
     </footer>
     <script src="../main.js"></script>
     <script src="../js/cart.js"></script>
+    <script src="../js/displayProducts.js"></script>
     <script src="../admin.js"></script>
 </body>
 </html>
