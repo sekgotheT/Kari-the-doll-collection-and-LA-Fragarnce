@@ -13,10 +13,11 @@
             <a href="shop.html">Shop</a> |
             <a href="cart.html">Cart</a> |
             <a href="checkout.html">Checkout</a> |
+             <a href="payment.html">payment</a>
             <a href="about.html">About Us</a> |
             <a href="contact.html">Contact Us</a> |
             <a href="product.html">My Product</a> |  
-            <a href="admin.html">Dashboard</a> 
+            <a href="login.html">login to admin</a> 
         </nav>
     </header>
 
@@ -24,17 +25,6 @@
         <h2>Items in Your Cart</h2>
         <div id="cart-items">
             <!-- JavaScript will dynamically load cart items here -->
-            <div class="cart-item">
-                <img src="images/sample-product.jpg" alt="Sample Product">
-                <div class="item-details">
-                    <h3>Product Name</h3>
-                    <p>Price: $XX.XX</p>
-                    <p>Quantity: 
-                        <input type="number" value="1" min="1" onchange="updateCartTotal()">
-                    </p>
-                    <button class="remove-btn" onclick="removeItem(this)">Remove</button>
-                </div>
-            </div>
             <!-- More cart items will be added here dynamically -->
         </div>
         <div class="cart-summary">
@@ -49,25 +39,9 @@
         <button onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
     </section>
 
-    <section class="suggested-products">
-        <h2>You Might Also Like</h2>
-        <div class="product-list">
-            <!-- Suggested products can be dynamically loaded here -->
-            <div class="product">
-                <img src="images/st3.jpg" alt="Suggested Product 1">
-                <h3>Suggested Product 1</h3>
-                <p>Price: $XX.XX</p>
-                <button onclick="addToCart('Suggested Product 1', XX.XX)">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/st4.jpg" alt="Suggested Product 2">
-                <h3>Suggested Product 2</h3>
-                <p>Price: $XX.XX</p>
-                <button onclick="addToCart('Suggested Product 2', XX.XX)">Add to Cart</button>
-            </div>
-            <!-- More suggested products can be added -->
-        </div>
-    </section>
+    <section class="product-container">
+    <!-- Products will be dynamically loaded here -->
+</section>
 
     <footer>
         <p>&copy; 2024 Your Brand. All rights reserved.</p>
@@ -92,6 +66,7 @@
 
     <script src="../js/cart.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/displayProducts.js"></script>
     <script>
         function updateCartTotal() {
             // Logic to update the total price based on quantities and prices
