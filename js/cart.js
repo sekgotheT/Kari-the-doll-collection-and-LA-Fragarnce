@@ -1,5 +1,3 @@
-// cart.js
-
 // Retrieve the cart from localStorage
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -18,7 +16,7 @@ function renderCartItems() {
                 <div class="cart-item">
                     <img src="${item.image}" alt="${item.name}">
                     <h3>${item.name}</h3>
-                    <p>$${item.price.toFixed(2)} (x <input type="number" class="quantity" value="${item.quantity}" min="1" data-name="${item.name}"></p>
+                    <p>$${item.price.toFixed(2)} (x <input type="number" class="quantity" value="${item.quantity}" min="1" data-name="${item.name}">)</p>
                     <button class="remove">Remove</button>
                 </div>
             `;
