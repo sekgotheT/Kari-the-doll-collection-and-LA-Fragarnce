@@ -15,40 +15,12 @@
             <a href="cart.html">Cart</a> |
             <a href="contact.html">Contact Us</a> |
             <a href="product.html">My Product</a> |
-            <a href="admin.html">Dashboard</a> |
+            <a href="login.html">login to admin</a> |
             <a href="checkout.html">Checkout</a>|
              <a href="payment.html">payment</a>
             <input type="text" placeholder="Search products..." class="search-bar">
         </nav>
     </header>
-
-    <section class="product-details">
-        <div class="product-image">
-            <img src="images/.jpg" alt="Product Image">
-        </div>
-        <div class="product-info">
-            <h2>Product Name</h2>
-            <p class="product-price">Price: $XX.XX</p>
-            <p class="product-description">Detailed description of the product goes here, highlighting its features, quality, and benefits.</p>
-
-            <div class="product-quantity">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" min="1" value="1">
-            </div>
-
-            <button class="btn add-to-cart">Add to Cart</button>
-
-            <div class="product-features">
-                <h3>Features & Specifications:</h3>
-                <ul>
-                    <li>High-quality material</li>
-                    <li>Available in different sizes</li>
-                    <li>Durable and long-lasting</li>
-                    <li>Eco-friendly and sustainable</li>
-                </ul>
-            </div>
-        </div>
-    </section>
 
     <section class="customer-reviews">
         <h3>Customer Reviews:</h3>
@@ -63,6 +35,10 @@
             <p>The product is good, but the size runs a little small. Otherwise, I love it!</p>
         </div>
     </section>
+
+    <section class="product-container">
+    <!-- Products will be dynamically loaded here -->
+</section>
 
     <section class="related-products">
         <h3>You May Also Like:</h3>
@@ -82,7 +58,7 @@
              <div class="related-product-card">
                 <img src="images/st8.jpg" alt="Related Product 1">
                 <p>Related Product Name 1</p>
-                <p>Price: $XX.XX</p>
+                <p>Price: R1 400</p>
                 <a href="product.html" class="btn">View Product</a>
             </div>
              <div class="related-product-card">
@@ -94,26 +70,10 @@
              <div class="related-product-card">
                 <img src="images/st6.jpg" alt="Related Product 1">
                 <p>Related Product Name 1</p>
-                <p>Price: $XX.XX</p>
+                <p>Price: R1 300</p>
                 <a href="payment.html" class="btn">buy</a>
             </div>
         </div>
-    </section>
-
-    <section class="admin-upload-form">
-        <h2>Upload a New Product</h2>
-        <form id="productUploadForm">
-            <label for="productName">Product Name:</label>
-            <input type="text" id="productName" name="productName" required />
-
-            <label for="productPrice">Product Price:</label>
-            <input type="number" id="productPrice" name="productPrice" required />
-
-            <label for="productImage">Product Image:</label>
-            <input type="file" id="productImage" name="productImage" required />
-
-            <button type="submit">Upload Product</button>
-        </form>
     </section>
 
     <footer>
@@ -139,6 +99,7 @@
 
     <script src="../js/main.js"></script>
     <script src="../js/cart.js"></script>
+    <script src="../js/displayProducts.js"></script>
     <script src="admin.js"></script>
 </body>
 </html>
