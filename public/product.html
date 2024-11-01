@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <h1>KARI THE DOLL COLLECTION AND LA`FRAGANCE-Product Details</h1>
+        <h1>KARI THE DOLL COLLECTION AND LA`FRAGANCE - Product Details</h1>
         <nav>
             <a href="../index.html">Home</a> |
             <a href="shop.html">Shop</a> |
@@ -15,9 +15,9 @@
             <a href="cart.html">Cart</a> |
             <a href="contact.html">Contact Us</a> |
             <a href="product.html">My Product</a> |
-            <a href="login.html">login to admin</a> |
-            <a href="checkout.html">Checkout</a>|
-             <a href="payment.html">payment</a>
+            <a href="login.html">Login to Admin</a> |
+            <a href="checkout.html">Checkout</a> |
+            <a href="payment.html">Payment</a>
             <input type="text" placeholder="Search products..." class="search-bar">
         </nav>
     </header>
@@ -25,7 +25,7 @@
     <section class="customer-reviews">
         <h3>Customer Reviews:</h3>
         <div class="review">
-            <h4>anonymous</h4>
+            <h4>Anonymous</h4>
             <p>Rating: ★★★★☆</p>
             <p>Great product! Exceeded my expectations in terms of quality and comfort.</p>
         </div>
@@ -37,8 +37,8 @@
     </section>
 
     <section class="product-container">
-    <!-- Products will be dynamically loaded here -->
-</section>
+        <!-- Products will be dynamically loaded here -->
+    </section>
 
     <section class="related-products">
         <h3>You May Also Like:</h3>
@@ -47,31 +47,31 @@
                 <img src="images/st9.jpg" alt="Related Product 1">
                 <p>Related Product Name 1</p>
                 <p>Price: R2 000</p>
-                <a href="payment.html" class="btn">buy</a>
+                <a href="payment.html" class="btn">Buy</a>
             </div>
             <div class="related-product-card">
                 <img src="images/st10.jpg" alt="Related Product 2">
                 <p>Related Product Name 2</p>
                 <p>Price: R2 000</p>
-                <a href="payment.html" class="btn">buy</a>
+                <a href="payment.html" class="btn">Buy</a>
             </div>
-             <div class="related-product-card">
-                <img src="images/st8.jpg" alt="Related Product 1">
-                <p>Related Product Name 1</p>
+            <div class="related-product-card">
+                <img src="images/st8.jpg" alt="Related Product 3">
+                <p>Related Product Name 3</p>
                 <p>Price: R1 400</p>
                 <a href="product.html" class="btn">View Product</a>
             </div>
-             <div class="related-product-card">
-                <img src="images/st7.jpg" alt="Related Product 1">
-                <p>Related Product Name 1</p>
+            <div class="related-product-card">
+                <img src="images/st7.jpg" alt="Related Product 4">
+                <p>Related Product Name 4</p>
                 <p>Price: R1 400</p>
-                <a href="payment.html" class="btn">buy</a>
+                <a href="payment.html" class="btn">Buy</a>
             </div>
-             <div class="related-product-card">
-                <img src="images/st6.jpg" alt="Related Product 1">
-                <p>Related Product Name 1</p>
+            <div class="related-product-card">
+                <img src="images/st6.jpg" alt="Related Product 5">
+                <p>Related Product Name 5</p>
                 <p>Price: R1 300</p>
-                <a href="payment.html" class="btn">buy</a>
+                <a href="payment.html" class="btn">Buy</a>
             </div>
         </div>
     </section>
@@ -89,6 +89,7 @@
             <a href="#">Instagram</a>
         </div>
     </footer>
+
     <!-- Modal Structure -->
     <div id="imageModal" class="modal">
         <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -97,39 +98,51 @@
         </div>
     </div>
 
+    <!-- Upload Product Form -->
+    <section class="upload-product">
+        <h3>Upload New Product</h3>
+        <form id="uploadForm">
+            <input type="text" id="name" placeholder="Product Name" required />
+            <input type="number" id="price" placeholder="Product Price" required />
+            <input type="file" id="image" required />
+            <button type="submit">Upload Product</button>
+        </form>
+        <div id="uploadStatus"></div>
+    </section>
+
     <script src="../js/main.js"></script>
     <script src="../js/cart.js"></script>
     <script src="../js/displayProducts.js"></script>
     <script src="admin.js"></script>
     <script>
-document.getElementById('uploadForm').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    document.getElementById('uploadForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent the form from submitting normally
 
-    const formData = new FormData();
-    formData.append('name', document.getElementById('name').value);
-    formData.append('price', document.getElementById('price').value);
-    formData.append('image', document.getElementById('image').files[0]);
+        const formData = new FormData();
+        formData.append('name', document.getElementById('name').value);
+        formData.append('price', document.getElementById('price').value);
+        formData.append('image', document.getElementById('image').files[0]);
 
-    try {
-        const response = await fetch('/api/products', { // Update this URL to match your route
-            method: 'POST',
-            body: formData
-        });
+        try {
+            const response = await fetch('/api/uploadProduct', { // Update this URL to match your route
+                method: 'POST',
+                body: formData
+            });
 
-        if (response.ok) {
-            const result = await response.json(); // Parse response as JSON
-            document.getElementById('uploadStatus').textContent = result.message; // Update status message
-            alert('Product uploaded successfully!');
-            document.getElementById('uploadForm').reset(); // Reset the form
-            fetchProducts(); // Refresh the products list after a successful upload
-        } else {
-            alert('Failed to upload product');
+            if (response.ok) {
+                const result = await response.json(); // Parse response as JSON
+                document.getElementById('uploadStatus').textContent = result.message; // Update status message
+                alert('Product uploaded successfully!');
+                document.getElementById('uploadForm').reset(); // Reset the form
+                fetchProducts(); // Refresh the products list after a successful upload
+            } else {
+                alert('Failed to upload product');
+            }
+        } catch (error) {
+            console.error('Error uploading product:', error);
+            alert('Error uploading product');
         }
-    } catch (error) {
-        console.error('Error uploading product:', error);
-        alert('Error uploading product');
-    }
-});
-</script>
+    });
+    </script>
 </body>
 </html>
