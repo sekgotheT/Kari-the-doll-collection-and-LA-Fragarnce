@@ -18,6 +18,9 @@
             <button type="button" onclick="login()">Login</button>
             <p id="error-message" style="color: red; display: none;">Invalid credentials. Please try again.</p>
         </form>
+
+        <!-- Logout button to be used for logging out if needed -->
+        <button onclick="logout()">Logout</button>
     </section>
 
     <script>
@@ -37,6 +40,11 @@
                 // Show error message
                 document.getElementById("error-message").style.display = "block";
             }
+        }
+
+        function logout() {
+            localStorage.removeItem("isAdminLoggedIn"); // Remove login status
+            window.location.href = "login.html"; // Redirect to login page
         }
     </script>
 </body>
