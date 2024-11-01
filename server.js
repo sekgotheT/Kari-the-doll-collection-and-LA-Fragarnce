@@ -9,13 +9,14 @@ const nodemailer = require('nodemailer'); // Import nodemailer for sending email
 const twilio = require('twilio'); // Import Twilio for sending SMS
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Stripe setup
 const connectDB = require('./configuration/db'); // Update with the correct path to db config
-
-// Require the Product model
-const Product = require('./models/productModel'); // Adjust the path as necessary
+const productController = require('./controllers/productController'); // Import your product controller
 
 // Initialize express app
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Require the Product model
+const Product = require('./models/productModel'); // Adjust the path as necessary
 
 // Enable CORS
 app.use(cors());
@@ -30,16 +31,6 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/productsDB'
 // Middleware
 app.use(express.json()); // Parses JSON requests
 
-// Define Product schema and model
-const productSchema = new mongoose.Schema({
-    name: String,
-    price: Number,
-    description: String,
-    image: String, // Storing image path
-});
-
-const Product = mongoose.model('Product', productSchema);
-
 // Configure multer for image uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, 'public/uploads/'), // Specify upload directory
@@ -50,29 +41,14 @@ const upload = multer({ storage });
 // Serve static images from the uploads folder
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads'))); // Serve uploaded files
 
-// Route to handle image upload and product details
-app.post('/uploadProduct', upload.single('image'), async (req, res) => {
-    console.log('Uploaded file:', req.file); // Log the uploaded file details
-    try {
-        const newProduct = new Product({
-            name: req.body.name,
-            price: req.body.price,
-            description: req.body.description,
-            image: req.file ? `/uploads/${req.file.filename}` : '', // Save image path
-        });
-        await newProduct.save();
-        res.status(200).json({ message: 'Product uploaded successfully' });
-    } catch (error) {
-        console.error('Error uploading product:', error);
-        res.status(500).json({ message: 'Error uploading product' });
-    }
-});
-
 // Routes
 app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
 app.use(express.static('public')); // Serve static files from 'public' folder
+
+// Route to handle image upload and product details using the product controller
+app.post('/api/products', upload.single('image'), productController.addProduct);
 
 // Payment Handling with Stripe
 app.post('/create-payment-intent', async (req, res) => {
@@ -99,9 +75,6 @@ const transporter = nodemailer.createTransport({
 });
 
 // Twilio configuration
-console.log('TWILIO_SID:', process.env.TWILIO_SID); // Log TWILIO_SID
-console.log('TWILIO_AUTH_TOKEN:', process.env.TWILIO_AUTH_TOKEN); // Log TWILIO_AUTH_TOKEN
-console.log('TWILIO_PHONE_NUMBER:', process.env.TWILIO_PHONE_NUMBER); // Log TWILIO_PHONE_NUMBER
 const twilioClient = new twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
 // Function to send receipt email
