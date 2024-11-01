@@ -333,6 +333,16 @@ nav a:hover {
 .payment-form button[type="submit"]:hover {
     background-color: #218838;
 }
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
 
 /* Background Images for Left and Right */
 .left-background {
@@ -372,6 +382,72 @@ nav a:hover {
     .product-card {
         width: calc(100% - 20px); /* 1 item per row */
     }
+}
+/* Modal Structure */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    display: block;
+    margin: auto;
+    width: 80%;
+    max-width: 800px;
+}
+
+.modal img {
+    width: 100%; /* Full width in modal */
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-close:hover {
+    color: #ff7c00;
+}
+
+/* Form Styles */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="number"], input[type="password"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: #ff7c00;
+    outline: none;
+}
+
+textarea {
+    height: 100px;
 }
 
 @media screen and (max-width: 480px) {
