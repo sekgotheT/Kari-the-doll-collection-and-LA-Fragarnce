@@ -17,7 +17,7 @@
             <a href="contact.html">Contact Us</a>
             <a href="payment.html">payment</a>
             <a href="product.html">my product</a>
-            <a href="admin.html">dashboard</a>
+            <a href="login.html">login to admin</a>
              <input type="text" placeholder="Search products..." class="search-bar">
         </nav>
     </header>
@@ -34,15 +34,39 @@
             <input type="text" id="country" name="country" required>
         </form>
         <h2>Payment Options</h2>
-        <form>
-            <input type="radio" id="paypal" name="payment" value="PayPal">
-            <label for="paypal">PayPal</label><br>
-            <input type="radio" id="credit-card" name="payment" value="Credit Card">
-            <label for="credit-card">Credit Card</label><br>
-            <input type="radio" id="bank-transfer" name="payment" value="Bank Transfer">
-            <label for="bank-transfer">Bank Transfer</label><br>
+       <form id="payment-form" action="/process-payment" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="description">product your paying for!.:</label>
+            <textarea id="description" name="description" required></textarea>
+            
+            <label for="cardholder-name">Cardholder Name:</label>
+            <input type="text" id="cardholder-name" name="cardholder-name" required>
+
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" pattern="\d{16}" placeholder="1234 5678 9012 3456" required>
+
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="password" id="cvv" name="cvv" pattern="\d{3,4}" placeholder="123" required>
+
+            <label for="billing-address">Billing Address:</label>
+            <input type="text" id="billing-address" name="billing-address" placeholder="123 Street Name, City, Country" required>
+
+            <label for="zip-code">ZIP Code:</label>
+            <input type="text" id="zip-code" name="zip-code" placeholder="ZIP Code" required>
+
+            <button type="submit" class="submit-payment">Pay Now</button>
         </form>
-        <button>Confirm and Pay</button>
     </section>
     <footer>
         <p>&copy; 2024 Your Brand. All rights reserved.</p>
@@ -66,5 +90,6 @@
     </div>
 <script src="../js/main.js"></script>
 <script src="../js/cart.js"></script>
+<script src="../js/displayProducts.js"></script>
 </body>
 </html>
