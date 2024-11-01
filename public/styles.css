@@ -94,6 +94,7 @@ nav a:hover {
     margin: 20px auto;
     background-color: #fff;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .about h2, .about h3 {
@@ -193,8 +194,7 @@ nav a:hover {
     flex-grow: 1;
     margin-left: 20px;
 }
-
-.product-list {
+    .product-list {
     padding: 20px;
 }
 
@@ -203,7 +203,6 @@ nav a:hover {
     flex-wrap: wrap;
     justify-content: space-around;
 }
-
 .product-card {
     background-color: #fff;
     border: 1px solid #e0e0e0;
@@ -220,7 +219,6 @@ nav a:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-
 .product-image {
     width: 100%;
     height: auto;
@@ -333,6 +331,7 @@ nav a:hover {
 .payment-form button[type="submit"]:hover {
     background-color: #218838;
 }
+
 /* Footer Styles */
 footer {
     background-color: #333;
@@ -344,45 +343,6 @@ footer {
     width: 100%;
 }
 
-/* Background Images for Left and Right */
-.left-background {
-    background: url('../images/background-left.jpg') no-repeat left center/cover;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 25%;
-    z-index: -1; /* Behind other content */
-}
-
-.right-background {
-    background: url('../images/background-right.jpg') no-repeat right center/cover;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 25%;
-    z-index: -1; /* Behind other content */
-}
-
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    .hero h2 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.2rem;
-    }
-
-    .related-product-card {
-        width: calc(45% - 20px); /* 2 items per row */
-    }
-
-    .product-card {
-        width: calc(100% - 20px); /* 1 item per row */
-    }
-}
 /* Modal Structure */
 .modal {
     display: none; /* Hidden by default */
@@ -450,24 +410,21 @@ textarea {
     height: 100px;
 }
 
-@media screen and (max-width: 480px) {
-    header h1 {
-        font-size: 2rem;
-    }
-
-    .hero h2 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .related-product-card {
-        width: calc(100% - 20px); /* 1 item per row */
-    }
-
+/* Responsive Design */
+@media (max-width: 768px) {
     .product-card {
-        width: calc(100% - 20px); /* 1 item per row */
+        width: calc(45% - 20px); /* 2 items per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .payment-section {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .product-card {
+        width: 100%; /* 1 item per row on small screens */
     }
 }
