@@ -2,30 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>KARI THE DOLL COLLECTION AND LA`FRAGANCE-Admin</title>
+    <title>KARI THE DOLL COLLECTION AND LA`FRAGANCE - Admin</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Redirect to login page if admin is not logged in -->
     <script>
-        if (!localStorage.getItem("isAdminLoggedIn")) {
-            window.location.href = "login.html"; // Redirect to login page if not logged in
-        }
+    if (!localStorage.getItem("isAdminLoggedIn")) {
+        window.location.href = "login.html"; // Redirect to login page if not logged in
+    }
     </script>
 
     <header>
         <h1>Admin Dashboard</h1>
         <nav>
             <a href="../index.html">Home</a>
-            <a href="admin.html">Dashboard</a>
-            <a href="shop.html">Shop</a> |
+            <a href="login.html">Login to Admin</a>
+            <a href="shop.html">Shop</a>
             <a href="cart.html">Cart</a>
-            <a href="payment.html">payment</a>
+            <a href="payment.html">Payment</a>
             <a href="checkout.html">Checkout</a>
             <a href="about-us.html">About Us</a>
             <a href="contact.html">Contact Us</a>
-            <a href="product.html">My Product</a> 
-             <input type="text" placeholder="Search products..." class="search-bar">
+            <a href="product.html">My Product</a>
+            <input type="text" placeholder="Search products..." class="search-bar">
         </nav>
     </header>
 
@@ -53,26 +52,19 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Sample Product 1</td>
-                    <td>$XX.XX</td>
-                    <td>A brief description of the product.</td>
-                    <td>
-                        <button onclick="editProduct('1')">Edit</button>
-                        <button onclick="deleteProduct('1')">Delete</button>
-                    </td>
-                </tr>
-                <!-- More products can be dynamically loaded here -->
+            <tbody id="product-list">
+                <!-- Product entries will be dynamically added here -->
             </tbody>
         </table>
+        <section class="product-container">
+    <!-- Products will be dynamically loaded here -->
+        </section>
 
         <h2>Sales Analytics</h2>
         <div class="analytics">
             <p>Total Sales This Month: $XXX.XX</p>
             <p>Total Orders This Month: XX</p>
             <p>Most Popular Product: <span id="popular-product">Product Name</span></p>
-            <!-- You can integrate a chart here using a library like Chart.js -->
         </div>
 
         <h2>User Management</h2>
@@ -87,15 +79,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Sample User</td>
-                        <td>user@example.com</td>
-                        <td>
-                            <button onclick="editUser('userId')">Edit</button>
-                            <button onclick="deleteUser('userId')">Delete</button>
-                        </td>
-                    </tr>
-                    <!-- More users can be dynamically loaded here -->
+                    <!-- User entries can be dynamically loaded here -->
                 </tbody>
             </table>
         </div>
@@ -112,16 +96,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>#001</td>
-                    <td>John Doe</td>
-                    <td>Shipped</td>
-                    <td>$XX.XX</td>
-                    <td>
-                        <button onclick="viewOrderDetails('001')">View</button>
-                    </td>
-                </tr>
-                <!-- More orders can be dynamically loaded here -->
+                <!-- Order entries can be dynamically loaded here -->
             </tbody>
         </table>
     </section>
@@ -139,45 +114,99 @@
             <a href="#">Instagram</a>
         </div>
     </footer>
-     <!-- Modal Structure -->
+
+    <!-- Modal Structure -->
     <div id="imageModal" class="modal">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         <div class="modal-content">
             <img id="modalImage" src="" alt="Product Image">
         </div>
     </div>
-    <button onclick="logout()">Logout</button>
 
     <script src="../js/main.js"></script>
     <script src="../js/cart.js"></script>
+    <script src="../js/displayProducts.js"></script>
+
     <script>
-        function logout() {
-            localStorage.removeItem("isAdminLoggedIn");
-            window.location.href = "login.html";
-        }
-        function editProduct(id) {
-            alert(`Edit product with ID: ${id}`);
-        }
+    if (!localStorage.getItem("isAdminLoggedIn")) {
+        window.location.href = "login.html"; // Redirect to login page if not logged in
+    }
 
-        function deleteProduct(id) {
-            alert(`Delete product with ID: ${id}`);
-        }
+    // Fetch and display products
+    async function loadProducts() {
+        const response = await fetch('/products');
+        const products = await response.json();
 
-        function addUser() {
-            alert('Add new user functionality goes here.');
-        }
+        const productList = document.getElementById("product-list");
+        productList.innerHTML = ''; // Clear existing content
 
-        function editUser(userId) {
-            alert(`Edit user with ID: ${userId}`);
-        }
+        products.forEach(product => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${product.name}</td>
+                <td>$${product.price}</td>
+                <td>${product.description}</td>
+                <td>
+                    <button onclick="editProduct('${product._id}')">Edit</button>
+                    <button onclick="deleteProduct('${product._id}')">Delete</button>
+                </td>
+            `;
+            productList.appendChild(row);
+        });
+    }
 
-        function deleteUser(userId) {
-            alert(`Delete user with ID: ${userId}`);
-        }
+    document.addEventListener("DOMContentLoaded", loadProducts);
 
-        function viewOrderDetails(orderId) {
-            alert(`View details for order ID: ${orderId}`);
+    // Handle product upload form
+    document.getElementById("upload-product-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        const response = await fetch("/upload-product", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (response.ok) {
+            alert("Product uploaded successfully!");
+            loadProducts();
+            e.target.reset();
+        } else {
+            alert("Failed to upload product.");
         }
+    });
+
+    function editProduct(id) {
+        alert(`Edit product with ID: ${id}`);
+    }
+
+    async function deleteProduct(id) {
+        if (confirm("Are you sure you want to delete this product?")) {
+            const response = await fetch(`/delete-product/${id}`, { method: "DELETE" });
+            if (response.ok) {
+                alert("Product deleted successfully!");
+                loadProducts();
+            } else {
+                alert("Failed to delete product.");
+            }
+        }
+    }
+
+    function addUser() {
+        alert('Add new user functionality goes here.');
+    }
+
+    function editUser(userId) {
+        alert(`Edit user with ID: ${userId}`);
+    }
+
+    function deleteUser(userId) {
+        alert(`Delete user with ID: ${userId}`);
+    }
+
+    function viewOrderDetails(orderId) {
+        alert(`View details for order ID: ${orderId}`);
+    }
     </script>
 </body>
 </html>
