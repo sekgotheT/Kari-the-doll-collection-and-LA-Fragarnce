@@ -101,5 +101,35 @@
     <script src="../js/cart.js"></script>
     <script src="../js/displayProducts.js"></script>
     <script src="admin.js"></script>
+    <script>
+document.getElementById('uploadForm').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    const formData = new FormData();
+    formData.append('name', document.getElementById('name').value);
+    formData.append('price', document.getElementById('price').value);
+    formData.append('image', document.getElementById('image').files[0]);
+
+    try {
+        const response = await fetch('/api/products', { // Update this URL to match your route
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            const result = await response.json(); // Parse response as JSON
+            document.getElementById('uploadStatus').textContent = result.message; // Update status message
+            alert('Product uploaded successfully!');
+            document.getElementById('uploadForm').reset(); // Reset the form
+            fetchProducts(); // Refresh the products list after a successful upload
+        } else {
+            alert('Failed to upload product');
+        }
+    } catch (error) {
+        console.error('Error uploading product:', error);
+        alert('Error uploading product');
+    }
+});
+</script>
 </body>
 </html>
